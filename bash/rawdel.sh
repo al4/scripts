@@ -16,9 +16,6 @@ rawdir="./RAW"	# directory where raw files reside
 jpgdir="./JPG"	# directory where jpg files reside
 				# rawdir and jpgdir can be the same
 
-rawdir="."
-jpgdir="."
-
 # Working variables, leave as-is
 list=""			# list of files that have been deleted
 rawlist=""		# the list of raw files that we will delete
@@ -37,7 +34,7 @@ for f in $(ls -1 $rawdir/*.$rawextn); do
 done
 
 # Convert jpg filenames back to corresponding raw filenames
-rawlist=$(echo ${list} | sed 's/\.JPG$/.CR2/g')
+rawlist=$(echo -e ${list} | sed 's/\.JPG/.CR2/g')
 filecount=$(echo -e ${rawlist}| awk 'END{print NF}')
 
 if [ $filecount == 0 ]; then
