@@ -1,0 +1,28 @@
+#
+# Hack to add authentication for Redis to ss_get_by_ssh.php, part of
+# Percona Monitoring Plugins v1.0.1
+# 
+# See http://blog.al4.co.nz/2012/06/percona-monitoring-plugins-for-cacti-and-redis-auth/
+# for more info
+#
+48a49
+> $redis_auth    = "password";        # HACK - redis auth password
+1221c1222
+<    return "echo INFO | $nc_cmd $srv $prt";
+---
+>    return "echo AUTH $redis_auth\r\nINFO | $nc_cmd $srv $prt";
+1244c1245
+<    global $redis_port;
+---
+>    global $redis_port, $redis_auth;
+1252a1254,1263
+> 
+>    $authstring = "AUTH ".$redis_auth."\r\n";
+>    $auth = fwrite($sock, $authstring);
+>    $auth_response = fread($sock, 3);
+> 
+>    if ( $auth_response !== '+OK' ) {
+>       debug("Redis auth failed");
+>       return;
+>    }
+> 
