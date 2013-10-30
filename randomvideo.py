@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+'''
+This is a stupid Halloween party script which pauses Spotify and plays a video
+at random intervals.
+'''
+
 import random
 import subprocess
 from subprocess import call
@@ -25,6 +30,7 @@ def time_in_range(start, end, x):
     else:
 	print("end<start")
         return start <= x or x <= end
+
 
 def weighted_choice(weights):
 	total = sum(weights[video] for video in weights)
