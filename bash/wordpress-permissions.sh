@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o nounset
+set -ue
 
 ADMINUSER="root"
 ADMINGROUP="blogadmin"
