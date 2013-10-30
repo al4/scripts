@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 '''
-This is a stupid Halloween party script which pauses Spotify and plays a video
+This is a Halloween party script which pauses Spotify and plays a video
 at random intervals.
 '''
 
